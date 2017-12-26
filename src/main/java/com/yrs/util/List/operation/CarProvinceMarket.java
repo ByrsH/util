@@ -2,7 +2,7 @@ package com.yrs.util.List.operation;
 
 /**
  * @Author: yrs
- * @Description:
+ * @Description:各省行情类
  * @Date: Greated in 21:49 2017/12/21
  * @Modified By:
  */
