@@ -2,7 +2,9 @@ package com.yrs.util.json;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -33,6 +35,7 @@ public class JsonUtil {
 
     }
 
+    /*
     public List<String> getValueListByKey(String jsonArrayValue){
         if (jsonArrayValue == null && jsonArrayValue.startsWith("[") && jsonArrayValue.endsWith("]")){
             return null;
@@ -49,6 +52,7 @@ public class JsonUtil {
         }
         return values;
     }
+    */
 
     public static void main(String args []){
 
@@ -61,9 +65,10 @@ public class JsonUtil {
         value = jsonToMap.getValueByKey(value, "address");
         System.out.println(value);
 
-        List<String> values = jsonToMap.getValueListByKey(value);
-        for (String item: values){
-            System.out.println(item);
-        }
+        //用Gson反序列化集合
+        Gson gson = new Gson();
+        Type type = new TypeToken<List<Location>>(){}.getType();
+        List<Location> locations = gson.fromJson(value, type);
+        System.out.println(locations.get(0).getCity());
     }
 }
